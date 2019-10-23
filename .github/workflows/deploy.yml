@@ -1,9 +1,10 @@
 name: deploy
 
-on:
-  push:
-    tags:
-      - "*.*.*"
+# on:
+#   push:
+#     tags:
+#       - "*.*.*"
+on: [push, pull_request]
 
 jobs:
   # Initial task to compile a JAR, store as a pipeline artifact to be used by
