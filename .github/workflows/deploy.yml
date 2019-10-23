@@ -47,11 +47,11 @@ jobs:
       - name: Build into uberjar via boot
         run: |
           npm run compile-sci-boot && \
-          mv target/closh-zero-sci.jar closh-zero-sci-${{ steps.parse-ref.outputs.version }}.jar
+          mv target/closh-zero-sci.jar closh-zero-sci.jar
 
       - uses: actions/upload-artifact@v1
         with:
-          path: closh-zero-sci-${{ steps.parse-ref.outputs.version }}.jar
+          path: closh-zero-sci.jar
           name: jar
 
   # Use GraalVM on macOS to convert JAR to a native macOS binary
@@ -87,14 +87,14 @@ jobs:
               --no-fallback \
               --enable-url-protocols=http,https \
               --allow-incomplete-classpath \
-              -jar closh-zero-sci-${{ steps.parse-ref.outputs.version }}.jar \
+              -jar closh-zero-sci.jar \
               closh-zero-sci
 
-      - run: tar -cvzf closh-zero-sci-${{ steps.parse-ref.outputs.version }}.tgz ./closh-zero-sci
+      - run: tar -cvzf closh-zero-sci.tgz ./closh-zero-sci
 
       - uses: actions/upload-artifact@v1
         with:
-          path: closh-zero-sci-${{ steps.parse-ref.outputs.version }}.tgz
+          path: closh-zero-sci.tgz
           name: closh-zero-sci
 
   # Collate artifacts, upload to GitHub Releases on semver tags
@@ -131,6 +131,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create-release.outputs.upload_url }}
-          asset_path: ./closh-zero-sci-${{ steps.parse-ref.outputs.version }}.tgz
-          asset_name: closh-zero-sci-${{ steps.parse-ref.outputs.version }}.tgz
+          asset_path: ./closh-zero-sci.tgz
+          asset_name: closh-zero-sci.tgz
           asset_content_type: application/tar+gzip
