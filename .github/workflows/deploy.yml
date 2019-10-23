@@ -39,10 +39,10 @@ jobs:
       #   run: |
       #     npm install shadow-cljs
       #     npm install
-
-      - name: Install npm packages
-        run: |
-          npm install
+      #
+      # - name: Install npm packages
+      #   run: |
+      #     npm install
           
       - name: Build into uberjar via boot
         run: |
