@@ -31,7 +31,7 @@ jobs:
       #     npm install shadow-cljs
       #     npm install
 
-      - name: Build into uberjar
+      - name: Build into uberjar via boot
         run: |
           npm run compile-sci-boot
 
