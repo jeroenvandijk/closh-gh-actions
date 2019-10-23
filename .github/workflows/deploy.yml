@@ -45,12 +45,13 @@ jobs:
           npm install
           
       - name: Build into uberjar via boot
-        run: |
-          npm run compile-sci-boot
+        run:
+          - npm run compile-sci-boot
+          - mv target/closh-zero-sci.jar closh-zero-sci-${{ steps.parse-ref.outputs.version }}.jar
 
       - uses: actions/upload-artifact@v1
         with:
-          path: target/closh-zero-sci-${{ steps.parse-ref.outputs.version }}.jar
+          path: closh-zero-sci-${{ steps.parse-ref.outputs.version }}.jar
           name: jar
 
   # Use GraalVM on macOS to convert JAR to a native macOS binary
